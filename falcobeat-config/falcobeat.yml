@@ -1,0 +1,21 @@
+################################# Falcobeat ###################################
+#================================ General =====================================
+name: falcobeat
+logging.metrics.enabled: false
+#================================ Input =======================================
+filebeat.autodiscover:
+  providers:
+    - type: kubernetes
+      templates:
+        - condition:
+            equals:
+              kubernetes.container.name: falco
+          config:
+            - type: container
+              paths:
+                - /var/log/containers/*${data.kubernetes.container.id}.log
+              include_lines: ['output']
+#================================ Output ======================================
+output.console:
+  pretty: true
+
