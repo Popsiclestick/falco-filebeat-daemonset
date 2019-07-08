@@ -4,26 +4,26 @@ Daemonset configurations to get falco output scraped and sent by filebeat.
 
 This exists to provide a concrete example for getting falco and filebeat working together. I took [falcosecurity's example daemonset](https://github.com/falcosecurity/falco/tree/dev/integrations/k8s-using-daemonset) and added the necessary filebeat components.
 
-# Run
-### Configure the RBAC, Namespace, etc
+## Run
+#### Configure the RBAC, Namespace, etc
 ```
 :; kubectl create -f falco-setup.yaml
 ```
 
-### Create ConfigMap to store Falco & Filebeat configurations
+#### Create ConfigMap to store Falco & Filebeat configurations
 ```
 :; kubectl create configmap --namespace security-system falco-config --from-file=falco-config
 :; kubectl create configmap --namespace security-system falcobeat-config --from-file=falcobeat-config
 ```
 
-### Deploy the daemonset
+#### Deploy the daemonset
 ```
 :; kubectl create -f falco-daemonset-configmap.yaml
 ```
 
 
-# Verify
-### Find the pod && Peek the logs
+## Verify
+#### Find the pod && Peek the logs
 ```
 :; kubectl get pods -A
 :; kubectl --namespace security-system logs falco-daemonset-${RANDOM} filebeat
