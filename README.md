@@ -7,7 +7,7 @@ This exists to provide a concrete example for getting falco and filebeat working
 ## Run
 #### Configure the RBAC, Namespace, etc
 ```
-:; kubectl create -f falco-setup.yaml
+:; kubectl create -f falco-rbac.yml
 ```
 
 #### Create ConfigMap to store Falco & Filebeat configurations
