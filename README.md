@@ -18,7 +18,7 @@ This exists to provide a concrete example for getting falco and filebeat working
 
 #### Deploy the daemonset
 ```
-:; kubectl create -f falco-daemonset-configmap.yaml
+:; kubectl create -f falco-daemonset-configmap.yml
 ```
 
 
